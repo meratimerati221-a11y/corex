@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import useCart from "@/context/useCart";
+import { error } from "console";
 
 export default function CheckoutPage() {
   const { cart } = useCart();
@@ -44,17 +45,21 @@ export default function CheckoutPage() {
             </h2>
 
             <input
-            {errors.name && (
-            <p className="text-red-400 text-sm">
-            {errors.name}
-            </p>
+            type="text"
+            placeholder="نام و نام خانوادگی"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full rounded-xl bg-[#1b2435] p-4 outline-none focus:ring-2 focus:ring-cyan-400"
+
+              />
+
+              {errors.name && (
+              <p className="text-red-400 text-sm">
+              {errors.name}
+          
+              </p>
 )}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              type="text"
-              placeholder="نام و نام خانوادگی"
-              className="w-full rounded-xl bg-[#1b2435] p-4 outline-none focus:ring-2 focus:ring-cyan-400"
-            />
+
 
             <input
               value={phone}
