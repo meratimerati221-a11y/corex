@@ -7,19 +7,23 @@ export default function CanvasCursor() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const mouse = useRef({
-    x: window.innerWidth / 2,
-    y: window.innerHeight / 2,
+    x: 0,
+    y: 0,
   });
 
   const engine = useRef(new ParticleEngine());
 
   useEffect(() => {
-    const canvas = canvasRef.current;
+    // فقط داخل مرورگر
+    mouse.current = {
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
+    };
 
+    const canvas = canvasRef.current;
     if (!canvas) return;
 
     const ctx = canvas.getContext("2d");
-
     if (!ctx) return;
 
     const resize = () => {
@@ -55,7 +59,6 @@ export default function CanvasCursor() {
 
     return () => {
       cancelAnimationFrame(animationId);
-
       window.removeEventListener("resize", resize);
       window.removeEventListener("mousemove", move);
     };
