@@ -1,3 +1,6 @@
+"use client";
+
+import { useRef } from "react";
 import { products } from "@/lib/products";
 import AddToCartButton from "@/components/products/AddToCartButton";
 type Props = {
@@ -8,6 +11,8 @@ type Props = {
 
 export default async function ProductPage({ params }: Props) {
   const { id } = await params;
+
+  const imageRef = useRef<HTMLImageElement>(null);
 
   const product = products.find(
     (item) => item.id === Number(id)
@@ -75,6 +80,7 @@ export default async function ProductPage({ params }: Props) {
   title={product.title}
   price={product.price}
   image={product.image}
+  imageRef={imageRef}
 />
 
             </div>
