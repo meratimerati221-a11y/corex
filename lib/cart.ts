@@ -19,21 +19,17 @@ export function getCart(): CartItem[] {
 }
 
 export function saveCart(cart: CartItem[]) {
+  if (typeof window === "undefined") return;
+
   localStorage.setItem(CART_KEY, JSON.stringify(cart));
 
-  window.dispatchEvent(
-    new Event("cart-updated")
-  );
+  window.dispatchEvent(new Event("cart-updated"));
 }
 
-export function addToCart(
-  item: Omit<CartItem, "quantity">
-) {
+export function addToCart(item: Omit<CartItem, "quantity">) {
   const cart = getCart();
 
-  const existing = cart.find(
-    (p) => p.id === item.id
-  );
+  const existing = cart.find((p) => p.id === item.id);
 
   if (existing) {
     existing.quantity++;
@@ -47,14 +43,10 @@ export function addToCart(
   saveCart(cart);
 }
 
-export function increaseQuantity(
-  id: number
-) {
+export function increaseQuantity(id: number) {
   const cart = getCart();
 
-  const item = cart.find(
-    (p) => p.id === id
-  );
+  const item = cart.find((p) => p.id === id);
 
   if (!item) return;
 
@@ -63,14 +55,10 @@ export function increaseQuantity(
   saveCart(cart);
 }
 
-export function decreaseQuantity(
-  id: number
-) {
+export function decreaseQuantity(id: number) {
   const cart = getCart();
 
-  const item = cart.find(
-    (p) => p.id === id
-  );
+  const item = cart.find((p) => p.id === id);
 
   if (!item) return;
 
@@ -84,12 +72,8 @@ export function decreaseQuantity(
   saveCart(cart);
 }
 
-export function removeFromCart(
-  id: number
-) {
-  const cart = getCart().filter(
-    (item) => item.id !== id
-  );
+export function removeFromCart(id: number) {
+  const cart = getCart().filter((item) => item.id !== id);
 
   saveCart(cart);
 }
@@ -99,9 +83,5 @@ export function clearCart() {
 }
 
 export function getCartCount() {
-  return getCart().reduce(
-    (sum, item) => sum + item.quantity,
-    0
-  );
+  return getCart().reduce((sum, item) => sum + item.quantity, 0);
 }
-
