@@ -1,16 +1,13 @@
 "use client";
 
-import { RefObject } from "react";
 import useCart from "@/context/useCart";
 import { useToast } from "@/components/ui/Toast";
-import { flyToCart } from "@/lib/flyToCart";
 
 type Props = {
   id: number;
   title: string;
   price: string;
   image: string;
-  imageRef: RefObject<HTMLImageElement | null>;
 };
 
 export default function AddToCartButton({
@@ -18,7 +15,6 @@ export default function AddToCartButton({
   title,
   price,
   image,
-  imageRef,
 }: Props) {
   const { addToCart } = useCart();
   const toast = useToast();
@@ -32,18 +28,6 @@ export default function AddToCartButton({
     });
 
     toast.success("محصول به سبد خرید اضافه شد.");
-
-    if (!imageRef.current) return;
-
-    const cart =
-      document.getElementById("cart-icon");
-
-    if (!cart) return;
-
-    flyToCart(
-      imageRef.current,
-      cart
-    );
   };
 
   return (
