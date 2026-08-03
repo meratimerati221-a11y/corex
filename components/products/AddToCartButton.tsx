@@ -9,7 +9,7 @@ type Props = {
   title: string;
   price: string;
   image: string;
-  imageRef?: RefObject<HTMLImageElement | null>;
+  
 };
 
 export default function AddToCartButton({
