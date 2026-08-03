@@ -1,5 +1,6 @@
 "use client";
 
+import { RefObject } from "react";
 import useCart from "@/context/useCart";
 import { useToast } from "@/components/ui/Toast";
 
@@ -8,6 +9,7 @@ type Props = {
   title: string;
   price: string;
   image: string;
+  imageRef?: RefObject<HTMLImageElement | null>;
 };
 
 export default function AddToCartButton({

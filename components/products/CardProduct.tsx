@@ -49,8 +49,7 @@ export default function CardProduct({
         title={title}
         price={price}
         image={image}
-        imageRef={imageRef}
-
+        
             />
         
       </div>
