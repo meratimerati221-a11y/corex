@@ -1,3 +1,4 @@
+import LoadingScreen from "@/components/loading/LoadingScreen";
 import { ToastProvider } from "@/components/ui/Toast";
 import CartProvider from "@/context/CartProvider";
 import Header from "@/components/layout/Header";
@@ -35,6 +36,7 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-[#050816]">
         
+        <LoadingScreen />
   <ToastProvider>
     <CartProvider>
 
