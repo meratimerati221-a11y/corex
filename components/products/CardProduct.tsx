@@ -17,15 +17,13 @@ export default function CardProduct({
   price,
   image,
 }: CardProductProps) {
-  const imageRef = useRef<HTMLImageElement>(null);
 
   return (
     <div className="group overflow-hidden rounded-3xl border border-cyan-500/20 bg-[#111827] transition duration-500 hover:-translate-y-2 hover:border-cyan-400 hover:shadow-[0_0_35px_rgba(34,211,238,0.25)]">
 
       <Link href={`/products/${id}`}>
         <div className="cursor-pointer overflow-hidden">
-          <img
-            ref={imageRef}
+          <img          
             src={image}
             alt={title}
             className="h-64 w-full object-cover transition duration-500 group-hover:scale-110"
