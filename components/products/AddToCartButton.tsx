@@ -1,6 +1,5 @@
 "use client";
 
-import { RefObject } from "react";
 import useCart from "@/context/useCart";
 import { useToast } from "@/components/ui/Toast";
 
