@@ -1,5 +1,5 @@
 import CardProduct from "./CardProduct";
-import { getProducts } from "@/lib/getproducts";
+import { getProducts } from "@/lib/lib/productsApi";
 
 export default async function FeaturedProducts() {
   const products = await getProducts();
