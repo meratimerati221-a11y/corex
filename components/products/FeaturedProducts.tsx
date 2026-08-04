@@ -1,7 +1,9 @@
 import CardProduct from "./CardProduct";
-import { products } from "@/lib/products";
+import { getProducts } from "@/lib/getproducts";
 
-export default function FeaturedProducts() {
+export default async function FeaturedProducts() {
+  const products = await getProducts();
+
   return (
     <section className="bg-[#070B18] py-24">
       <div className="mx-auto max-w-7xl px-8">
@@ -15,16 +17,16 @@ export default function FeaturedProducts() {
         </p>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-  {products.map((product) => (
-    <CardProduct
-      key={product.id}
-      id={product.id}
-      title={product.title}
-      price={product.price}
-      image={product.image}
-    />
-  ))}
-</div>
+          {products.map((product: any) => (
+            <CardProduct
+              key={product.id}
+              id={product.id}
+              title={product.title}
+              price={product.price}
+              image={product.image}
+            />
+          ))}
+        </div>
 
       </div>
     </section>
