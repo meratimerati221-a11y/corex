@@ -1,3 +1,4 @@
+import AuthProvider from "@/context/AuthProvider";
 import LoadingScreen from "@/components/loading/LoadingScreen";
 import { ToastProvider } from "@/components/ui/Toast";
 import CartProvider from "@/context/CartProvider";
@@ -45,7 +46,9 @@ export default function RootLayout({
       <Header />
 
       <main className="relative z-10 flex-1">
+       <AuthProvider>
         {children}
+       </AuthProvider>
       </main>
 
       </CartProvider>
