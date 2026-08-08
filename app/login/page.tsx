@@ -7,20 +7,33 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  async function handleLogin(e: React.FormEvent) {
+  async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
+    if (loading) return;
+
+    setLoading(true);
+    setMessage("");
+
     try {
-      await signIn(email, password);
+      await signIn(email.trim(), password);
+
       setMessage("Login successful!");
     } catch (error: any) {
-      setMessage(error.message);
+      console.error("Login error:", error);
+
+      setMessage(
+        error?.message || "Login failed. Please check your email and password."
+      );
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
-    <main className="min-h-screen bg-[#070B18] flex items-center justify-center px-6">
+    <main className="flex min-h-screen items-center justify-center bg-[#070B18] px-6">
       <div className="w-full max-w-md rounded-2xl bg-white/10 p-8">
 
         <h1 className="mb-6 text-3xl font-bold text-white">
@@ -36,6 +49,7 @@ export default function LoginPage() {
             onChange={(e) => setEmail(e.target.value)}
             className="w-full rounded-lg p-3 text-black"
             required
+            disabled={loading}
           />
 
           <input
@@ -45,13 +59,15 @@ export default function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
             className="w-full rounded-lg p-3 text-black"
             required
+            disabled={loading}
           />
 
           <button
             type="submit"
-            className="w-full rounded-lg bg-blue-600 py-3 font-bold text-white"
+            disabled={loading}
+            className="w-full rounded-lg bg-blue-600 py-3 font-bold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            Login
+            {loading ? "Logging in..." : "Login"}
           </button>
 
         </form>
